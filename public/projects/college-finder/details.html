@@ -1,0 +1,1827 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>College Details | CollegeFinder India</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+/* =====================================================
+   COLLEGE DETAILS PAGE
+   COMPACT A4 STYLE
+===================================================== */
+
+.details-section{
+  min-height:100vh;
+  padding:25px 20px;
+  background:linear-gradient(135deg,#eef4ff,#f8fafc);
+  transition:0.3s ease;
+  box-sizing:border-box;
+}
+
+.details-card{
+  width:100%;
+  max-width:850px;
+  min-height:1120px;
+  margin:0 auto;
+
+  background:#fff;
+  border-radius:12px;
+  overflow:hidden;
+
+  box-shadow:0 8px 30px rgba(0,0,0,0.12);
+  border:1px solid #e5e7eb;
+
+  transition:0.3s ease;
+}
+
+
+/* =====================================================
+   IMAGE
+===================================================== */
+
+.details-image-box{
+  width:100%;
+  height:245px;
+  overflow:hidden;
+}
+
+.college-image{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+
+/* =====================================================
+   CONTENT
+===================================================== */
+
+.details-content{
+  padding:25px 30px;
+}
+
+.college-badge{
+  display:inline-block;
+
+  padding:5px 12px;
+  border-radius:20px;
+
+  background:#eff6ff;
+  color:#2563eb;
+
+  font-size:12px;
+  font-weight:600;
+
+  margin-bottom:8px;
+}
+
+#collegeTitle{
+  font-size:30px;
+  color:#0f172a;
+
+  margin:0 0 5px;
+
+  font-weight:800;
+  line-height:1.2;
+}
+
+.location{
+  color:#64748b;
+
+  margin:0 0 18px;
+
+  font-size:14px;
+}
+
+
+/* =====================================================
+   INFORMATION - ONE LINE
+===================================================== */
+
+.info-box{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-bottom:18px;
+}
+
+.info-item{
+  padding:13px 10px;
+
+  text-align:center;
+
+  background:#f8fafc;
+
+  border:1px solid #e2e8f0;
+
+  border-radius:10px;
+
+  transition:0.3s;
+}
+
+.info-item:hover{
+  transform:translateY(-2px);
+  box-shadow:0 5px 15px rgba(0,0,0,0.06);
+}
+
+.info-item .icon{
+  font-size:22px;
+  margin-bottom:3px;
+}
+
+.info-item h3{
+  color:#334155;
+  margin:0 0 3px;
+  font-size:14px;
+}
+
+.info-item p{
+  color:#2563eb;
+  margin:0;
+  font-size:12px;
+  font-weight:700;
+
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+
+/* =====================================================
+   ABOUT
+===================================================== */
+
+.college-about,
+.highlights{
+  margin-top:15px;
+
+  padding:15px 17px;
+
+  border-radius:10px;
+
+  background:#f8fafc;
+
+  border:1px solid #e2e8f0;
+}
+
+.college-about h2,
+.highlights h2{
+  color:#111827;
+
+  margin:0 0 6px;
+
+  font-size:18px;
+}
+
+.college-about p{
+  color:#64748b;
+
+  margin:0;
+
+  font-size:13px;
+
+  line-height:1.55;
+}
+
+
+/* =====================================================
+   HIGHLIGHTS
+===================================================== */
+
+.highlights ul{
+  list-style:none;
+
+  margin:0;
+  padding:0;
+
+  display:grid;
+
+  grid-template-columns:repeat(2,1fr);
+
+  gap:6px;
+}
+
+.highlights li{
+  padding:7px 9px;
+
+  background:#fff;
+
+  border-radius:7px;
+
+  color:#475569;
+
+  font-size:12px;
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.action-buttons{
+  display:flex;
+
+  gap:10px;
+
+  margin-top:18px;
+}
+
+.apply-btn,
+.like-btn{
+  flex:1;
+
+  padding:11px;
+
+  border:none;
+
+  border-radius:9px;
+
+  font-size:14px;
+
+  font-weight:700;
+
+  cursor:pointer;
+
+  transition:0.3s;
+}
+
+.apply-btn{
+  color:white;
+
+  background:
+    linear-gradient(
+      135deg,
+      #2563eb,
+      #1d4ed8
+    );
+
+  box-shadow:
+    0 5px 15px
+    rgba(37,99,235,0.20);
+}
+
+.like-btn{
+  background:#f1f5f9;
+
+  color:#334155;
+
+  border:1px solid #e2e8f0;
+}
+
+.like-btn.active{
+  background:#fee2e2;
+
+  color:#dc2626;
+
+  border-color:#fecaca;
+}
+
+.apply-btn:hover,
+.like-btn:hover{
+  transform:translateY(-1px);
+}
+
+
+/* =====================================================
+   RATING
+===================================================== */
+
+.rating-section{
+  margin-top:18px;
+
+  padding:15px;
+
+  text-align:center;
+
+  background:#fff7ed;
+
+  border-radius:10px;
+}
+
+.rating-section h3{
+  color:#334155;
+
+  margin:0 0 7px;
+
+  font-size:16px;
+}
+
+.stars{
+  display:flex;
+
+  justify-content:center;
+
+  gap:5px;
+}
+
+.stars span{
+  font-size:24px;
+
+  cursor:pointer;
+
+  transition:0.2s;
+}
+
+.stars span:hover{
+  transform:scale(1.12);
+}
+
+#ratingMsg{
+  margin:6px 0 0;
+
+  color:#2563eb;
+
+  font-size:12px;
+
+  font-weight:600;
+}
+
+
+/* =====================================================
+   REVIEWS
+===================================================== */
+
+.review-section{
+  margin-top:18px;
+}
+
+.review-section h3{
+  color:#111827;
+
+  font-size:18px;
+
+  margin:0 0 9px;
+}
+
+#reviewInput{
+  width:100%;
+
+  min-height:75px;
+
+  padding:10px 12px;
+
+  border:1px solid #d1d5db;
+
+  border-radius:9px;
+
+  resize:vertical;
+
+  outline:none;
+
+  background:white;
+
+  color:#111827;
+
+  font-family:inherit;
+
+  font-size:13px;
+
+  box-sizing:border-box;
+}
+
+#reviewInput:focus{
+  border-color:#2563eb;
+
+  box-shadow:
+    0 0 0 3px
+    rgba(37,99,235,0.10);
+}
+
+.reviewBtn{
+  margin-top:7px;
+
+  padding:9px 15px;
+
+  border:none;
+
+  border-radius:8px;
+
+  background:#2563eb;
+
+  color:white;
+
+  font-size:13px;
+
+  font-weight:600;
+
+  cursor:pointer;
+}
+
+.review-card{
+  margin-top:8px;
+
+  padding:10px 12px;
+
+  background:#f8fafc;
+
+  border-left:3px solid #2563eb;
+
+  border-radius:7px;
+
+  color:#475569;
+
+  font-size:13px;
+
+  word-break:break-word;
+}
+
+
+/* =====================================================
+   DARK MODE
+===================================================== */
+
+body.dark{
+  background:#020617 !important;
+  color:#e5e7eb !important;
+}
+
+
+/* MAIN BACKGROUND */
+
+body.dark .details-section{
+  background:
+    linear-gradient(
+      135deg,
+      #020617,
+      #0f172a
+    ) !important;
+}
+
+
+/* CARD */
+
+body.dark .details-card{
+  background:#111827 !important;
+
+  border-color:#374151 !important;
+
+  box-shadow:
+    0 10px 35px
+    rgba(0,0,0,0.55);
+}
+
+
+/* BADGE */
+
+body.dark .college-badge{
+  background:#172554 !important;
+  color:#93c5fd !important;
+}
+
+
+/* TITLE */
+
+body.dark #collegeTitle{
+  color:#f8fafc !important;
+}
+
+
+/* LOCATION */
+
+body.dark .location{
+  color:#cbd5e1 !important;
+}
+
+
+/* INFO */
+
+body.dark .info-item{
+  background:#1f2937 !important;
+  border-color:#374151 !important;
+}
+
+body.dark .info-item h3{
+  color:#f1f5f9 !important;
+}
+
+body.dark .info-item p{
+  color:#60a5fa !important;
+}
+
+
+/* ABOUT + HIGHLIGHTS */
+
+body.dark .college-about,
+body.dark .highlights{
+  background:#1f2937 !important;
+  border-color:#374151 !important;
+}
+
+body.dark .college-about h2,
+body.dark .highlights h2{
+  color:#f8fafc !important;
+}
+
+body.dark .college-about p{
+  color:#cbd5e1 !important;
+}
+
+
+/* HIGHLIGHTS */
+
+body.dark .highlights li{
+  background:#111827 !important;
+  color:#cbd5e1 !important;
+}
+
+
+/* FAVORITE */
+
+body.dark .like-btn{
+  background:#1f2937 !important;
+  color:#f1f5f9 !important;
+  border-color:#374151 !important;
+}
+
+body.dark .like-btn.active{
+  background:#450a0a !important;
+  color:#fca5a5 !important;
+  border-color:#7f1d1d !important;
+}
+
+
+/* RATING */
+
+body.dark .rating-section{
+  background:#292524 !important;
+}
+
+body.dark .rating-section h3{
+  color:#f8fafc !important;
+}
+
+body.dark #ratingMsg{
+  color:#60a5fa !important;
+}
+
+
+/* REVIEW */
+
+body.dark .review-section h3{
+  color:#f8fafc !important;
+}
+
+body.dark #reviewInput{
+  background:#1f2937 !important;
+  color:#fff !important;
+  border-color:#374151 !important;
+}
+
+body.dark #reviewInput::placeholder{
+  color:#9ca3af !important;
+}
+
+body.dark .review-card{
+  background:#1f2937 !important;
+  color:#cbd5e1 !important;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media(max-width:900px){
+
+  .details-section{
+    padding:20px 15px;
+  }
+
+  .details-card{
+    max-width:760px;
+    min-height:auto;
+  }
+
+  .details-image-box{
+    height:220px;
+  }
+
+  .details-content{
+    padding:22px;
+  }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:650px){
+
+  .details-section{
+    padding:12px;
+  }
+
+  .details-card{
+    border-radius:12px;
+  }
+
+  .details-image-box{
+    height:180px;
+  }
+
+  .details-content{
+    padding:18px 15px;
+  }
+
+  #collegeTitle{
+    font-size:24px;
+  }
+
+
+  /* 3 INFORMATION BOXES SAME LINE */
+
+  .info-box{
+    grid-template-columns:repeat(3,1fr);
+    gap:6px;
+  }
+
+  .info-item{
+    padding:10px 5px;
+  }
+
+  .info-item .icon{
+    font-size:19px;
+  }
+
+  .info-item h3{
+    font-size:11px;
+  }
+
+  .info-item p{
+    font-size:10px;
+  }
+
+
+  .highlights ul{
+    grid-template-columns:1fr;
+  }
+
+
+  .action-buttons{
+    flex-direction:column;
+  }
+
+  .apply-btn,
+  .like-btn{
+    width:100%;
+  }
+
+}
+
+
+/* =====================================================
+   VERY SMALL MOBILE
+===================================================== */
+
+@media(max-width:400px){
+
+  .details-image-box{
+    height:160px;
+  }
+
+  .details-content{
+    padding:15px 12px;
+  }
+
+  #collegeTitle{
+    font-size:21px;
+  }
+
+  .info-item h3{
+    font-size:10px;
+  }
+
+  .info-item p{
+    font-size:9px;
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     MENU BUTTON
+===================================================== -->
+
+<button
+  id="menuBtn"
+  class="menuBtn"
+  type="button"
+>
+  ☰
+</button>
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<div
+  class="sidebar"
+  id="sidebar"
+>
+
+  <h2>CollegeFinder</h2>
+
+  <a href="dashboard.html">
+    🏠 Dashboard
+  </a>
+
+  <a href="profile.html">
+    👤 Profile
+  </a>
+
+  <a href="colleges.html">
+    🎓 Colleges
+  </a>
+
+  <a href="favorites.html">
+    ❤️ Favorites
+  </a>
+
+  <a href="compare.html">
+    ⚖ Compare
+  </a>
+
+  <a href="apply.html">
+    📝 Apply
+  </a>
+
+  <a href="about.html">
+    ℹ About
+  </a>
+
+  <a href="contact.html">
+    📞 Contact
+  </a>
+
+  <a
+    href="login.html"
+    onclick="logout()"
+  >
+    🚪 Logout
+  </a>
+
+</div>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav>
+
+  <div class="logo">
+    CollegeFinder India
+  </div>
+
+  <div class="nav-actions">
+
+    <ul>
+
+      <li>
+        <a href="index.html">
+          Home
+        </a>
+      </li>
+
+      <li>
+        <a href="colleges.html">
+          Colleges
+        </a>
+      </li>
+
+      <li>
+        <a href="about.html">
+          About
+        </a>
+      </li>
+
+      <li>
+        <a href="contact.html">
+          Contact
+        </a>
+      </li>
+
+      <li>
+        <a href="favorites.html">
+          Favorites❤️
+        </a>
+      </li>
+
+      <li>
+        <a href="compare.html">
+          Compare
+        </a>
+      </li>
+
+      <li id="loginBtn">
+
+        <a href="login.html">
+          Login
+        </a>
+
+        /
+
+        <a href="register.html">
+          Register
+        </a>
+
+      </li>
+
+      <li>
+
+        <button
+          id="darkBtn"
+          class="nav-btn"
+          type="button"
+        >
+          🌙 Dark Mode
+        </button>
+
+      </li>
+
+    </ul>
+
+  </div>
+
+</nav>
+
+
+<!-- =====================================================
+     DETAILS PAGE
+===================================================== -->
+
+<section class="details-section">
+
+  <div class="details-card">
+
+
+    <!-- IMAGE -->
+
+    <div class="details-image-box">
+
+      <img
+        id="collegeImg"
+        class="college-image"
+        src=""
+        alt="College Image"
+      >
+
+    </div>
+
+
+    <!-- CONTENT -->
+
+    <div class="details-content">
+
+
+      <!-- BADGE -->
+
+      <div class="college-badge">
+        ⭐ Top Rated College
+      </div>
+
+
+      <!-- TITLE -->
+
+      <h1 id="collegeTitle">
+        College Name
+      </h1>
+
+
+      <!-- LOCATION -->
+
+      <p class="location">
+
+        📍
+
+        <span id="collegePlace">
+          Location
+        </span>
+
+      </p>
+
+
+      <!-- =================================================
+           QUICK INFORMATION
+      ================================================= -->
+
+      <div class="info-box">
+
+
+        <!-- FEES -->
+
+        <div class="info-item">
+
+          <div class="icon">
+            💰
+          </div>
+
+          <h3>
+            Fees
+          </h3>
+
+          <p id="collegeFees">
+            --
+          </p>
+
+        </div>
+
+
+        <!-- ENTRANCE EXAM -->
+
+        <div class="info-item">
+
+          <div class="icon">
+            📝
+          </div>
+
+          <h3>
+            Entrance Exam
+          </h3>
+
+          <p id="collegeExam">
+            --
+          </p>
+
+        </div>
+
+
+        <!-- PLACEMENT -->
+
+        <div class="info-item">
+
+          <div class="icon">
+            📊
+          </div>
+
+          <h3>
+            Placement
+          </h3>
+
+          <p id="collegePlacement">
+            --
+          </p>
+
+        </div>
+
+
+      </div>
+
+
+      <!-- =================================================
+           ABOUT
+      ================================================= -->
+
+      <div class="college-about">
+
+        <h2>
+          About College
+        </h2>
+
+        <p>
+          This institution provides quality education,
+          modern infrastructure, experienced faculty,
+          industry exposure and excellent placement support.
+        </p>
+
+      </div>
+
+
+      <!-- =================================================
+           HIGHLIGHTS
+      ================================================= -->
+
+      <div class="highlights">
+
+        <h2>
+          Highlights
+        </h2>
+
+        <ul>
+
+          <li>
+            ✅ NAAC Accredited Campus
+          </li>
+
+          <li>
+            ✅ Modern Infrastructure
+          </li>
+
+          <li>
+            ✅ Experienced Faculty
+          </li>
+
+          <li>
+            ✅ Smart Classrooms
+          </li>
+
+          <li>
+            ✅ Industry Exposure
+          </li>
+
+          <li>
+            ✅ Placement Assistance
+          </li>
+
+        </ul>
+
+      </div>
+
+
+      <!-- =================================================
+           ACTION BUTTONS
+      ================================================= -->
+
+      <div class="action-buttons">
+
+        <button
+          class="apply-btn"
+          type="button"
+          onclick="goToApply()"
+        >
+          📝 Apply Now
+        </button>
+
+
+        <button
+          id="favBtn"
+          class="like-btn"
+          type="button"
+          onclick="toggleFavorite()"
+        >
+          🤍 Favorite
+        </button>
+
+      </div>
+
+
+      <!-- =================================================
+           RATING
+      ================================================= -->
+
+      <div class="rating-section">
+
+        <h3>
+          ⭐ Rate This College
+        </h3>
+
+        <div class="stars">
+
+          <span onclick="rateCollege(1)">
+            ⭐
+          </span>
+
+          <span onclick="rateCollege(2)">
+            ⭐
+          </span>
+
+          <span onclick="rateCollege(3)">
+            ⭐
+          </span>
+
+          <span onclick="rateCollege(4)">
+            ⭐
+          </span>
+
+          <span onclick="rateCollege(5)">
+            ⭐
+          </span>
+
+        </div>
+
+        <p id="ratingMsg"></p>
+
+      </div>
+
+
+      <!-- =================================================
+           REVIEWS
+      ================================================= -->
+
+      <div class="review-section">
+
+        <h3>
+          Student Reviews
+        </h3>
+
+        <textarea
+          id="reviewInput"
+          placeholder="Write your review..."
+        ></textarea>
+
+        <button
+          class="reviewBtn"
+          type="button"
+          onclick="addReview()"
+        >
+          Submit Review
+        </button>
+
+        <div id="reviewList"></div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+/* =====================================================
+   LOGIN CHECK
+===================================================== */
+
+if(
+  localStorage.getItem("isLoggedIn") !== "true"
+){
+
+  window.location.href = "login.html";
+
+}
+
+
+/* =====================================================
+   COLLEGE DATA
+===================================================== */
+
+let college = null;
+
+try{
+
+  college =
+    JSON.parse(
+      localStorage.getItem("selectedCollege")
+    );
+
+}
+catch(error){
+
+  college = null;
+
+}
+
+
+if(!college){
+
+  alert("No college selected!");
+
+  window.location.href = "index.html";
+
+}
+
+
+/* =====================================================
+   LOAD COLLEGE
+===================================================== */
+
+function loadCollege(){
+
+  if(!college) return;
+
+
+  document.getElementById(
+    "collegeTitle"
+  ).textContent =
+    college.name || "College Name";
+
+
+  document.getElementById(
+    "collegePlace"
+  ).textContent =
+    college.place || "Location";
+
+
+  document.getElementById(
+    "collegeFees"
+  ).textContent =
+    college.fees || "--";
+
+
+  document.getElementById(
+    "collegeExam"
+  ).textContent =
+    college.exam || "--";
+
+
+  document.getElementById(
+    "collegePlacement"
+  ).textContent =
+    college.placement || "--";
+
+
+  const img =
+    document.getElementById(
+      "collegeImg"
+    );
+
+
+  if(college.image){
+
+    img.src =
+      college.image;
+
+  }
+
+}
+
+
+/* =====================================================
+   FAVORITE
+===================================================== */
+
+function toggleFavorite(){
+
+  if(!college) return;
+
+
+  let favs = [];
+
+  try{
+
+    favs =
+      JSON.parse(
+        localStorage.getItem("favs")
+      ) || [];
+
+  }
+  catch(error){
+
+    favs = [];
+
+  }
+
+
+  const btn =
+    document.getElementById(
+      "favBtn"
+    );
+
+
+  if(favs.includes(college.name)){
+
+    favs =
+      favs.filter(
+        item =>
+          item !== college.name
+      );
+
+
+    btn.innerHTML =
+      "🤍 Favorite";
+
+    btn.classList.remove(
+      "active"
+    );
+
+  }
+
+  else{
+
+    favs.push(
+      college.name
+    );
+
+
+    btn.innerHTML =
+      "❤️ Added";
+
+    btn.classList.add(
+      "active"
+    );
+
+  }
+
+
+  localStorage.setItem(
+    "favs",
+    JSON.stringify(favs)
+  );
+
+}
+
+
+/* =====================================================
+   LOAD FAVORITE
+===================================================== */
+
+function loadFavorite(){
+
+  if(!college) return;
+
+
+  let favs = [];
+
+  try{
+
+    favs =
+      JSON.parse(
+        localStorage.getItem("favs")
+      ) || [];
+
+  }
+  catch(error){
+
+    favs = [];
+
+  }
+
+
+  const btn =
+    document.getElementById(
+      "favBtn"
+    );
+
+
+  if(favs.includes(college.name)){
+
+    btn.innerHTML =
+      "❤️ Added";
+
+    btn.classList.add(
+      "active"
+    );
+
+  }
+
+  else{
+
+    btn.innerHTML =
+      "🤍 Favorite";
+
+    btn.classList.remove(
+      "active"
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   RATING
+===================================================== */
+
+function rateCollege(stars){
+
+  if(!college) return;
+
+
+  localStorage.setItem(
+    "rating_" + college.name,
+    stars
+  );
+
+
+  document.getElementById(
+    "ratingMsg"
+  ).textContent =
+    "Thanks! You rated " +
+    stars +
+    "/5 ⭐";
+
+}
+
+
+/* =====================================================
+   LOAD RATING
+===================================================== */
+
+function loadRating(){
+
+  if(!college) return;
+
+
+  const rating =
+    localStorage.getItem(
+      "rating_" + college.name
+    );
+
+
+  if(rating){
+
+    document.getElementById(
+      "ratingMsg"
+    ).textContent =
+      "You rated " +
+      rating +
+      "/5 ⭐";
+
+  }
+
+}
+
+
+/* =====================================================
+   ADD REVIEW
+===================================================== */
+
+function addReview(){
+
+  if(!college) return;
+
+
+  const input =
+    document.getElementById(
+      "reviewInput"
+    );
+
+
+  const review =
+    input.value.trim();
+
+
+  if(review === ""){
+
+    alert(
+      "Please write a review."
+    );
+
+    input.focus();
+
+    return;
+
+  }
+
+
+  let reviews = [];
+
+  try{
+
+    reviews =
+      JSON.parse(
+        localStorage.getItem(
+          "reviews_" +
+          college.name
+        )
+      ) || [];
+
+  }
+  catch(error){
+
+    reviews = [];
+
+  }
+
+
+  reviews.push(
+    review
+  );
+
+
+  localStorage.setItem(
+    "reviews_" +
+    college.name,
+
+    JSON.stringify(reviews)
+  );
+
+
+  input.value = "";
+
+  loadReviews();
+
+}
+
+
+/* =====================================================
+   LOAD REVIEWS
+===================================================== */
+
+function loadReviews(){
+
+  if(!college) return;
+
+
+  const list =
+    document.getElementById(
+      "reviewList"
+    );
+
+
+  list.innerHTML = "";
+
+
+  let reviews = [];
+
+  try{
+
+    reviews =
+      JSON.parse(
+        localStorage.getItem(
+          "reviews_" +
+          college.name
+        )
+      ) || [];
+
+  }
+  catch(error){
+
+    reviews = [];
+
+  }
+
+
+  reviews.forEach(
+    function(review){
+
+      const div =
+        document.createElement(
+          "div"
+        );
+
+
+      div.className =
+        "review-card";
+
+
+      div.textContent =
+        review;
+
+
+      list.appendChild(
+        div
+      );
+
+    }
+  );
+
+}
+
+
+/* =====================================================
+   LOGIN USER
+===================================================== */
+
+function loadLoginUser(){
+
+  const loginBtn =
+    document.getElementById(
+      "loginBtn"
+    );
+
+
+  if(!loginBtn) return;
+
+
+  if(
+    localStorage.getItem(
+      "isLoggedIn"
+    ) === "true"
+  ){
+
+    let user = null;
+
+    try{
+
+      user =
+        JSON.parse(
+          localStorage.getItem(
+            "user"
+          )
+        );
+
+    }
+    catch(error){
+
+      user = null;
+
+    }
+
+
+    if(
+      user &&
+      user.name
+    ){
+
+      loginBtn.innerHTML =
+        `<a href="dashboard.html">
+          👤 ${user.name}
+        </a>`;
+
+    }
+
+  }
+
+}
+
+
+/* =====================================================
+   DARK MODE
+===================================================== */
+
+const darkBtn =
+  document.getElementById(
+    "darkBtn"
+  );
+
+
+function applyDarkMode(){
+
+  const isDark =
+    localStorage.getItem(
+      "darkMode"
+    ) === "on";
+
+
+  if(isDark){
+
+    document.body.classList.add(
+      "dark"
+    );
+
+
+    if(darkBtn){
+
+      darkBtn.textContent =
+        "☀️ Light Mode";
+
+    }
+
+  }
+
+  else{
+
+    document.body.classList.remove(
+      "dark"
+    );
+
+
+    if(darkBtn){
+
+      darkBtn.textContent =
+        "🌙 Dark Mode";
+
+    }
+
+  }
+
+}
+
+
+/* =====================================================
+   DARK MODE BUTTON
+===================================================== */
+
+if(darkBtn){
+
+  darkBtn.addEventListener(
+    "click",
+    function(){
+
+      const dark =
+        document.body.classList.toggle(
+          "dark"
+        );
+
+
+      if(dark){
+
+        localStorage.setItem(
+          "darkMode",
+          "on"
+        );
+
+
+        darkBtn.textContent =
+          "☀️ Light Mode";
+
+      }
+
+      else{
+
+        localStorage.setItem(
+          "darkMode",
+          "off"
+        );
+
+
+        darkBtn.textContent =
+          "🌙 Dark Mode";
+
+      }
+
+    }
+  );
+
+}
+
+
+/* =====================================================
+   APPLY NOW
+===================================================== */
+
+function goToApply(){
+
+  if(!college) return;
+
+
+  localStorage.setItem(
+    "selectedCollege",
+    JSON.stringify(college)
+  );
+
+
+  window.location.href =
+    "apply.html";
+
+}
+
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+const menuBtn =
+  document.getElementById(
+    "menuBtn"
+  );
+
+
+const sidebar =
+  document.getElementById(
+    "sidebar"
+  );
+
+
+if(
+  menuBtn &&
+  sidebar
+){
+
+  menuBtn.addEventListener(
+    "click",
+    function(){
+
+      sidebar.classList.toggle(
+        "active"
+      );
+
+    }
+  );
+
+}
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+function logout(){
+
+  localStorage.removeItem(
+    "isLoggedIn"
+  );
+
+}
+
+
+/* =====================================================
+   INITIAL LOAD
+===================================================== */
+
+loadCollege();
+
+loadFavorite();
+
+loadRating();
+
+loadReviews();
+
+loadLoginUser();
+
+applyDarkMode();
+
+
+</script>
+
+</body>
+
+</html>

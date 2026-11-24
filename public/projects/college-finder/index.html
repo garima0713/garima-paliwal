@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CollegeFinder India</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- MENU BUTTON -->
+<button id="menuBtn" class="menuBtn">☰</button>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+  <h2>CollegeFinder</h2>
+
+  <a href="dashboard.html">🏠 Dashboard</a>
+  <a href="profile.html">👤 Profile</a>
+  <a href="colleges.html">🎓 Colleges</a>
+  <a href="favorites.html">❤️ Favorites</a>
+  <a href="compare.html">⚖ Compare</a>
+  <a href="apply.html">📝 Apply</a>
+  <a href="about.html">ℹ About</a>
+  <a href="contact.html">📞 Contact</a>
+  <a href="login.html">🚪 Logout</a>
+</div>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav>
+  <div class="logo">CollegeFinder India</div>
+
+  <ul>
+    
+    <li><a href="index.html">Home</a></li>
+    <li><a href="colleges.html">Colleges</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="favorites.html">Favorites ❤️</a></li>
+    <li><a href="compare.html">Compare</a></li>
+    <a href="profile.html">👤 Profile</a>
+    <li><a href="login.html">Login</a>/<a href="register.html">Register</a></li>
+  </ul>
+
+  <button id="darkBtn">🌙 Dark Mode</button>
+</nav>
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+  <h1>Find Best Colleges In India</h1>
+  <p>Search Colleges By State & District</p>
+
+  <!-- IMAGE -->
+  <img
+    src="https://images.unsplash.com/photo-1607237138185-eedd9c632b0b?q=80&w=1200"
+    class="heroImg"
+  >
+
+  <!-- SEARCH BOX (AB IMAGE KE UPPER OVERLAY BAN SAKTA HAI CSS SE) -->
+  <div class="search-box">
+
+    <input
+      type="text"
+      id="searchInput"
+      placeholder="🔍 Search colleges..."
+    >
+    
+<!-- SUGGESTIONS BOX -->
+<div id="suggestions" class="suggestions"></div>
+
+    <select id="stateFilter">
+      <option value="all">Select State</option>
+    </select>
+
+    <select id="districtFilter">
+      <option value="all">Select District</option>
+    </select>
+
+    <button id="searchBtn">Search</button>
+
+  </div>
+
+</section>
+
+  <!-- ================= RESULTS ================= -->
+
+  <div class="searchResults" id="searchResults"></div>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+  <h3>CollegeFinder India</h3>
+  <p>Helping Students Find Best Colleges</p>
+</footer>
+
+<!-- ================= DATA FILES ================= -->
+
+<script src="districts.js"></script>
+<script src="colleges.js"></script>
+
+<!-- ================= SCRIPT ================= -->
+
+<script>
+
+const stateFilter = document.getElementById("stateFilter");
+const districtFilter = document.getElementById("districtFilter");
+const searchInput = document.getElementById("searchInput");
+const searchBtn = document.getElementById("searchBtn");
+const resultsBox = document.getElementById("searchResults");
+
+/* ================= LOAD STATES ================= */
+
+function loadStates() {
+
+  if (!districts) return;
+
+  Object.keys(districts).forEach(state => {
+    stateFilter.innerHTML += `
+      <option value="${state}">
+        ${formatName(state)}
+      </option>
+    `;
+  });
+}
+
+/* ================= UPDATE DISTRICTS ================= */
+
+function updateDistricts() {
+
+  const selectedState = stateFilter.value;
+
+  districtFilter.innerHTML = `<option value="all">Select District</option>`;
+
+  if (selectedState !== "all" && districts[selectedState]) {
+
+    districts[selectedState].forEach(district => {
+      districtFilter.innerHTML += `
+        <option value="${district}">
+          ${formatName(district)}
+        </option>
+      `;
+    });
+  }
+}
+
+/* ================= FILTER COLLEGES ================= */
+
+function filterColleges() {
+
+  const search = searchInput.value.toLowerCase().trim();
+  const selectedState = stateFilter.value.toLowerCase().trim();
+  const selectedDistrict = districtFilter.value.toLowerCase().trim();
+
+  const resultsBox = document.getElementById("searchResults");
+
+  if (
+    search === "" &&
+    selectedState === "all" &&
+    selectedDistrict === "all"
+  ) {
+    resultsBox.innerHTML = "";
+    return;
+  }
+
+ resultsBox.innerHTML = "";
+
+const filtered = colleges.filter(college => {
+
+    const matchSearch =
+      college.name.toLowerCase().includes(search);
+
+    const matchState =
+      selectedState === "all" ||
+      college.state?.toLowerCase().trim() === selectedState;
+
+    const matchDistrict =
+      selectedDistrict === "all" ||
+      college.district?.toLowerCase().trim() === selectedDistrict;
+
+    return matchSearch && matchState && matchDistrict;
+  });
+
+  if (filtered.length === 0) {
+    resultsBox.innerHTML = `<p class="noResult">No Colleges Found</p>`;
+    return;
+  }
+
+  filtered.forEach(college => {
+    resultsBox.innerHTML += `
+      <div class="searchItem"
+        onclick="openCollegePage('${college.name}')">
+        🎓 ${college.name}
+      </div>
+    `;
+  });
+}
+
+
+/* ================= FORMAT NAME ================= */
+
+function formatName(text) {
+  return text
+    .replace(/([a-z])([A-Z])/g, '$1 $2')
+    .replace(/\b\w/g, c => c.toUpperCase());
+}
+
+/* ================= OPEN COLLEGE ================= */
+
+function openCollegePage(name) {
+
+  const selectedCollege = colleges.find(c => c.name === name);
+
+  if (!selectedCollege) {
+    alert("College not found!");
+    return;
+  }
+
+  localStorage.setItem(
+    "selectedCollege",
+    JSON.stringify(selectedCollege)
+  );
+
+  window.location.href = "details.html";
+}
+
+/* ================= FAVORITES ================= */
+
+function toggleFav(name) {
+
+  let favs = JSON.parse(localStorage.getItem("favorites")) || [];
+
+  if (favs.includes(name)) {
+    favs = favs.filter(c => c !== name);
+  } else {
+    favs.push(name);
+  }
+
+  localStorage.setItem("favorites", JSON.stringify(favs));
+  filterColleges();
+}
+
+/* ================= DARK MODE ================= */
+
+const darkBtn = document.getElementById("darkBtn");
+
+if (localStorage.getItem("darkMode") === "on") {
+  document.body.classList.add("dark");
+}
+
+darkBtn.addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+
+  localStorage.setItem(
+    "darkMode",
+    document.body.classList.contains("dark") ? "on" : "off"
+  );
+});
+// ======================
+// USER LOGIN STATUS
+// ======================
+
+const loginBtn =
+document.getElementById("loginBtn");
+
+if(
+  loginBtn &&
+  localStorage.getItem("isLoggedIn")==="true"
+){
+
+  const user =
+  JSON.parse(localStorage.getItem("user"));
+
+  loginBtn.innerHTML =
+  `<a href="dashboard.html">
+     👤 ${user.name}
+   </a>`;
+
+}
+
+/* ================= EVENTS ================= */
+
+stateFilter.addEventListener("change", () => {
+  updateDistricts();
+  filterColleges();
+});
+
+districtFilter.addEventListener("change", filterColleges);
+searchInput.addEventListener("keyup", filterColleges);
+searchBtn.addEventListener("click", filterColleges);
+
+/* ================= INIT ================= */
+
+loadStates();
+updateDistricts();
+filterColleges();
+const menuBtn = document.getElementById("menuBtn");
+const sidebar = document.getElementById("sidebar");
+
+menuBtn.addEventListener("click", () => {
+  sidebar.classList.toggle("active");
+});
+
+</script>
+
+</body>
+</html>

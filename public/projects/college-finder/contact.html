@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    Contact Us | CollegeFinder India
+  </title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
+</head>
+
+<body>
+  <!-- MENU BUTTON -->
+<button id="menuBtn" class="menuBtn">☰</button>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+  <h2>CollegeFinder</h2>
+
+  <a href="dashboard.html">🏠 Dashboard</a>
+  <a href="profile.html">👤 Profile</a>
+  <a href="colleges.html">🎓 Colleges</a>
+  <a href="favorites.html">❤️ Favorites</a>
+  <a href="compare.html">⚖ Compare</a>
+  <a href="apply.html">📝 Apply</a>
+  <a href="about.html">ℹ About</a>
+  <a href="contact.html">📞 Contact</a>
+  <a href="login.html">🚪 Logout</a>
+</div>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav>
+
+  <div class="logo">
+    CollegeFinder India
+  </div>
+
+  <ul>
+
+    <li><a href="index.html">Home</a></li>
+
+    <li><a href="colleges.html">Colleges</a></li>
+
+    <li><a href="about.html">About</a></li>
+
+    <li><a href="contact.html">Contact</a></li>
+
+    <li><a href="favorites.html">Favorites ❤️</a></li>
+    <li><a href="compare.html">Compare</a>
+    <li id="loginBtn"><a href="login.html">Login</a>/<a href="register.html">Register</a></li>
+
+  </ul>
+
+  <button id="darkBtn">
+    🌙 Dark Mode
+  </button>
+
+</nav>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="contactHero">
+
+  <img
+    src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg"
+    alt="Contact"
+  >
+
+  <div class="contactOverlay"></div>
+
+  <div class="contactHeroContent">
+
+    <h1>
+      Contact Us
+    </h1>
+
+    <p>
+      We are always here to help students
+      build better careers 🚀
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- ================= CONTACT SECTION ================= -->
+
+<section class="contactSection">
+
+  <div class="contactCard">
+
+    <div class="contactInfo">
+
+      <h2>
+        Get In Touch 📞
+      </h2>
+
+      <p>
+
+        Have questions about admissions,
+        placements or colleges?
+
+        <br><br>
+
+        Feel free to contact us anytime.
+        Our team is ready to help you.
+
+      </p>
+
+    </div>
+
+
+   <div class="contactForm">
+
+<input
+type="text"
+id="name"
+placeholder="Enter Your Name"
+class="formInput"
+
+>
+
+<span
+id="nameError"
+class="error"
+
+> </span>
+
+<input
+type="email"
+id="email"
+placeholder="Enter Your Email"
+class="formInput"
+
+>
+
+<span
+id="emailError"
+class="error"
+
+> </span>
+
+  <textarea
+    id="message"
+    placeholder="Write Your Message"
+    class="formInput"
+  ></textarea>
+
+<span
+id="messageError"
+class="error"
+
+> </span>
+
+<button
+class="applyBtn"
+onclick="sendMessage()"
+
+>
+
+
+Send Message
+
+  </button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+  <h3>
+    CollegeFinder India
+  </h3>
+
+  <p>
+    Helping Students Build Better Futures
+  </p>
+
+</footer>
+
+
+
+<!-- ================= SCRIPT ================= -->
+<script>
+
+/* ================= CONTACT FORM VALIDATION ================= */
+
+function sendMessage(){
+
+  let name =
+    document.getElementById("name").value.trim();
+
+  let email =
+    document.getElementById("email").value.trim();
+
+  let message =
+    document.getElementById("message").value.trim();
+
+  let nameError =
+    document.getElementById("nameError");
+
+  let emailError =
+    document.getElementById("emailError");
+
+  let messageError =
+    document.getElementById("messageError");
+
+  /* CLEAR OLD ERRORS */
+
+  nameError.innerHTML = "";
+  emailError.innerHTML = "";
+  messageError.innerHTML = "";
+
+  let valid = true;
+
+  /* NAME */
+
+  if(name === ""){
+
+    nameError.innerHTML =
+      "Please enter your name";
+
+    valid = false;
+  }
+
+  /* EMAIL */
+
+  let emailPattern =
+    /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+  if(email === ""){
+
+    emailError.innerHTML =
+      "Please enter your email";
+
+    valid = false;
+  }
+
+  else if(!email.match(emailPattern)){
+
+    emailError.innerHTML =
+      "Please enter valid email";
+
+    valid = false;
+  }
+
+  /* MESSAGE */
+
+  if(message === ""){
+
+    messageError.innerHTML =
+      "Please enter your message";
+
+    valid = false;
+  }
+
+  /* SUCCESS */
+
+  if(valid){
+
+    alert(
+      "✅ Your message has been sent successfully!"
+    );
+
+    document.getElementById("name").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("message").value = "";
+  }
+
+}
+
+
+/* ================= DARK MODE ================= */
+
+const darkBtn =
+  document.getElementById("darkBtn");
+
+if(localStorage.getItem("darkMode") === "on"){
+
+  document.body.classList.add("dark");
+}
+
+darkBtn.addEventListener("click", () => {
+
+  document.body.classList.toggle("dark");
+
+  if(document.body.classList.contains("dark")){
+
+    localStorage.setItem(
+      "darkMode",
+      "on"
+    );
+  }
+
+  else{
+
+    localStorage.setItem(
+      "darkMode",
+      "off"
+    );
+  }
+
+});
+
+const menuBtn = document.getElementById("menuBtn");
+const sidebar = document.getElementById("sidebar");
+
+menuBtn.addEventListener("click", () => {
+  sidebar.classList.toggle("active");
+});
+
+</script>
+
+</body>
+</html>

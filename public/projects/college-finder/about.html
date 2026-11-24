@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    About Us | CollegeFinder India
+  </title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
+</head>
+
+<body>
+  <!-- MENU BUTTON -->
+<button id="menuBtn" class="menuBtn">☰</button>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+  <h2>CollegeFinder</h2>
+
+  <a href="dashboard.html">🏠 Dashboard</a>
+  <a href="profile.html">👤 Profile</a>
+  <a href="colleges.html">🎓 Colleges</a>
+  <a href="favorites.html">❤️ Favorites</a>
+  <a href="compare.html">⚖ Compare</a>
+  <a href="apply.html">📝 Apply</a>
+  <a href="about.html">ℹ About</a>
+  <a href="contact.html">📞 Contact</a>
+  <a href="login.html">🚪 Logout</a>
+</div>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav>
+
+  <div class="logo">
+    CollegeFinder India
+  </div>
+
+  <ul>
+
+    <li>
+      <a href="index.html">Home</a>
+    </li>
+
+    <li>
+      <a href="colleges.html">Colleges</a>
+    </li>
+
+    <li>
+      <a href="about.html">About</a>
+    </li>
+
+    <li>
+      <a href="contact.html">Contact</a>
+    </li>
+
+    <li>
+      <a href="favorites.html">
+        Favorites ❤️
+      </a>
+    </li>
+    <li>
+      <a href="compare.html">
+        Compare
+
+      </a>
+      </li>
+
+    <li id="loginBtn"><a href="login.html">Login</a>/<a href="register.html">Register</a></li>
+
+
+  </ul>
+
+  <!-- DARK BUTTON -->
+
+  <button id="darkBtn">
+    🌙 Dark Mode
+  </button>
+
+</nav>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="aboutHero">
+
+  <div class="overlay"></div>
+
+  <img
+    src="https://images.pexels.com/photos/1454360/pexels-photo-1454360.jpeg"
+    alt="Students"
+  >
+
+  <div class="heroContent">
+
+    <h1>
+      About CollegeFinder India
+    </h1>
+
+    <p>
+      Helping Students Find Their Dream Colleges
+      Across India
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- ================= ABOUT SECTION ================= -->
+
+<section class="aboutSection">
+
+  <div class="aboutCard">
+
+    <div class="aboutText">
+
+      <h2>
+        Find Your Dream College Easily 🎓
+      </h2>
+
+      <p>
+
+        CollegeFinder India is a modern and
+        student-friendly platform designed to
+        help students discover the best colleges
+        across India.
+
+        <br><br>
+
+        We make college searching simple,
+        smart and fast for students planning
+        their future careers.
+
+      </p>
+
+    </div>
+
+
+    <!-- FEATURES -->
+
+    <div class="featureGrid">
+
+      <div class="featureBox">
+
+        <h3>
+          🎓 Top Colleges
+        </h3>
+
+        <p>
+          Search Engineering, MBA, Medical,
+          Law and many more colleges.
+        </p>
+
+      </div>
+
+
+      <div class="featureBox">
+
+        <h3>
+          📍 Location Search
+        </h3>
+
+        <p>
+          Find colleges by state, city
+          and district easily.
+        </p>
+
+      </div>
+
+
+      <div class="featureBox">
+
+        <h3>
+          💰 Fees & Placements
+        </h3>
+
+        <p>
+          Compare fees structure and
+          placement records quickly.
+        </p>
+
+      </div>
+
+
+      <div class="featureBox">
+
+        <h3>
+          📝 Entrance Exams
+        </h3>
+
+        <p>
+          Check exams like JEE,
+          NEET, CET and more.
+        </p>
+
+      </div>
+
+
+      <div class="featureBox">
+
+        <h3>
+          ❤️ Favorites
+        </h3>
+
+        <p>
+          Save your favorite colleges
+          for future comparison.
+        </p>
+
+      </div>
+
+
+      <div class="featureBox">
+
+        <h3>
+          🚀 Easy Experience
+        </h3>
+
+        <p>
+          Smooth and modern UI made
+          specially for students.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+  <h3>
+    CollegeFinder India
+  </h3>
+
+  <p>
+    Helping Students Build Better Futures
+  </p>
+
+</footer>
+
+
+
+<!-- ================= DARK MODE JS ================= -->
+
+<script>
+
+const darkBtn =
+  document.getElementById("darkBtn");
+
+
+if(localStorage.getItem("darkMode") === "on"){
+
+  document.body.classList.add("dark");
+
+}
+
+
+darkBtn.addEventListener("click", () => {
+
+  document.body.classList.toggle("dark");
+
+  if(document.body.classList.contains("dark")){
+
+    localStorage.setItem(
+      "darkMode",
+      "on"
+    );
+
+  }
+
+  else{
+
+    localStorage.setItem(
+      "darkMode",
+      "off"
+    );
+
+  }
+
+});
+
+</script>
+<script>
+const menuBtn = document.getElementById("menuBtn");
+const sidebar = document.getElementById("sidebar");
+
+menuBtn.addEventListener("click", () => {
+  sidebar.classList.toggle("active");
+});
+</script>
+</body>
+</html>

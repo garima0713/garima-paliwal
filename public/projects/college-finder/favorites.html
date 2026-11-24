@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Favorites | CollegeFinder India</title>
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<!-- =====================================================
+     MENU BUTTON
+===================================================== -->
+
+<button
+  id="menuBtn"
+  class="menuBtn"
+  type="button"
+>
+  ☰
+</button>
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<div
+  class="sidebar"
+  id="sidebar"
+>
+
+  <h2>CollegeFinder</h2>
+
+  <a href="dashboard.html">🏠 Dashboard</a>
+
+  <a href="profile.html">👤 Profile</a>
+
+  <a href="colleges.html">🎓 Colleges</a>
+
+  <a href="favorites.html">❤️ Favorites</a>
+
+  <a href="compare.html">⚖ Compare</a>
+
+  <a href="apply.html">📝 Apply</a>
+
+  <a href="about.html">ℹ About</a>
+
+  <a href="contact.html">📞 Contact</a>
+
+  <a href="login.html">🚪 Logout</a>
+
+</div>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav>
+
+  <div class="logo">
+    ❤️ Favorite Colleges
+  </div>
+
+
+  <ul>
+
+    <li>
+      <a href="index.html">
+        Home
+      </a>
+    </li>
+
+    <li>
+      <a href="colleges.html">
+        Colleges
+      </a>
+    </li>
+
+    <li>
+      <a href="about.html">
+        About
+      </a>
+    </li>
+
+    <li>
+      <a href="contact.html">
+        Contact
+      </a>
+    </li>
+
+    <li>
+      <a href="favorites.html">
+        Favorites ❤️
+      </a>
+    </li>
+
+    <li>
+      <a href="compare.html">
+        Compare
+      </a>
+    </li>
+
+    <li id="loginBtn">
+
+      <a href="login.html">
+        Login
+      </a>
+
+      /
+
+      <a href="register.html">
+        Register
+      </a>
+
+    </li>
+
+  </ul>
+
+
+  <button
+    id="darkBtn"
+    type="button"
+  >
+    🌙 Dark Mode
+  </button>
+
+</nav>
+
+
+<!-- =====================================================
+     FAVORITES SECTION
+===================================================== -->
+
+<section class="colleges">
+
+  <h2 class="favTitle">
+    ❤️ My Favorite Colleges
+  </h2>
+
+
+  <div
+    class="college-container"
+    id="favContainer"
+  >
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+  <h3>
+    CollegeFinder India
+  </h3>
+
+  <p>
+    Helping Students Find Best Colleges
+  </p>
+
+</footer>
+
+
+<!-- =====================================================
+     COLLEGE DATA
+===================================================== -->
+
+<script src="colleges.js"></script>
+
+
+<!-- =====================================================
+     FAVORITES JAVASCRIPT
+===================================================== -->
+
+<script>
+
+/* =====================================================
+   LOGIN CHECK
+===================================================== */
+
+if (
+  localStorage.getItem("isLoggedIn") !== "true"
+) {
+
+  window.location.href = "login.html";
+
+}
+
+
+/* =====================================================
+   GET ELEMENTS
+===================================================== */
+
+const menuBtn =
+  document.getElementById("menuBtn");
+
+const sidebar =
+  document.getElementById("sidebar");
+
+const darkBtn =
+  document.getElementById("darkBtn");
+
+const container =
+  document.getElementById("favContainer");
+
+const loginBtn =
+  document.getElementById("loginBtn");
+
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+if (menuBtn && sidebar) {
+
+  menuBtn.addEventListener("click", () => {
+
+    sidebar.classList.toggle("active");
+
+  });
+
+}
+
+
+/* =====================================================
+   DARK MODE
+===================================================== */
+
+if (
+  localStorage.getItem("darkMode") === "on"
+) {
+
+  document.body.classList.add("dark");
+
+}
+
+
+if (darkBtn) {
+
+  darkBtn.addEventListener("click", () => {
+
+    document.body.classList.toggle("dark");
+
+
+    if (
+      document.body.classList.contains("dark")
+    ) {
+
+      localStorage.setItem(
+        "darkMode",
+        "on"
+      );
+
+    }
+
+    else {
+
+      localStorage.setItem(
+        "darkMode",
+        "off"
+      );
+
+    }
+
+  });
+
+}
+
+
+/* =====================================================
+   LOGIN USER
+===================================================== */
+
+if (
+  loginBtn &&
+  localStorage.getItem("isLoggedIn") === "true"
+) {
+
+  const user =
+    JSON.parse(
+      localStorage.getItem("user")
+    ) || {};
+
+
+  loginBtn.innerHTML = `
+
+    <a href="dashboard.html">
+      👤 ${user.name || "User"}
+    </a>
+
+  `;
+
+}
+
+
+/* =====================================================
+   GET FAVORITES
+===================================================== */
+
+let favs =
+  JSON.parse(
+    localStorage.getItem("favs")
+  ) || [];
+
+
+/* =====================================================
+   RENDER FAVORITES
+===================================================== */
+
+function renderFavorites() {
+
+  if (!container) return;
+
+
+  container.innerHTML = "";
+
+
+  /*
+     Make sure colleges exists
+  */
+
+  const collegeData =
+    Array.isArray(window.colleges)
+      ? window.colleges
+      : [];
+
+
+  /*
+     Find favorite colleges
+  */
+
+  const favColleges =
+    collegeData.filter(
+      college =>
+        favs.includes(college.name)
+    );
+
+
+  /* =================================================
+     NO FAVORITES
+  ================================================= */
+
+  if (favColleges.length === 0) {
+
+    container.innerHTML = `
+
+      <div class="emptyFav">
+
+        <div
+          style="
+            font-size:80px;
+            margin-bottom:20px;
+          "
+        >
+          ❤️
+        </div>
+
+
+        <h2>
+          No Favorite Colleges Yet
+        </h2>
+
+
+        <p>
+          Start adding your favorite colleges ❤️
+        </p>
+
+
+        <br>
+
+
+        <a
+          href="colleges.html"
+          class="applyBtn"
+          style="
+            display:inline-block;
+            text-decoration:none;
+            padding:12px 25px;
+          "
+        >
+          Browse Colleges
+        </a>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  /* =================================================
+     DISPLAY FAVORITES
+  ================================================= */
+
+  favColleges.forEach(college => {
+
+    const card =
+      document.createElement("div");
+
+
+    card.className = "card";
+
+
+    card.innerHTML = `
+
+      <img
+        src="${college.image}"
+        alt="${college.name}"
+      >
+
+
+      <h3>
+        ${college.name}
+      </h3>
+
+
+      <p>
+        📍 ${college.place}
+      </p>
+
+
+      <p>
+        💰 Fees: ${college.fees}
+      </p>
+
+
+      <p>
+        📝 Exam: ${college.exam}
+      </p>
+
+
+      <p>
+        📊 Placement: ${college.placement}
+      </p>
+
+
+      <div class="btns">
+
+
+        <!-- VIEW DETAILS -->
+
+        <button
+          class="applyBtn"
+          type="button"
+          onclick="openDetails('${encodeURIComponent(college.name)}')"
+        >
+          View Details
+        </button>
+
+
+        <!-- REMOVE FAVORITE -->
+
+        <button
+          class="favBtn active"
+          type="button"
+          onclick="removeFavorite('${encodeURIComponent(college.name)}')"
+          title="Remove from Favorites"
+        >
+          ❤️
+        </button>
+
+
+      </div>
+
+    `;
+
+
+    container.appendChild(card);
+
+  });
+
+}
+
+
+/* =====================================================
+   OPEN DETAILS
+===================================================== */
+
+function openDetails(encodedName) {
+
+  const name =
+    decodeURIComponent(encodedName);
+
+
+  const collegeData =
+    Array.isArray(window.colleges)
+      ? window.colleges.find(
+          college =>
+            college.name === name
+        )
+      : null;
+
+
+  if (!collegeData) {
+
+    alert("College details not found.");
+
+    return;
+
+  }
+
+
+  localStorage.setItem(
+    "selectedCollege",
+    JSON.stringify(collegeData)
+  );
+
+
+  window.location.href =
+    "details.html";
+
+}
+
+
+/* =====================================================
+   REMOVE FAVORITE
+===================================================== */
+
+function removeFavorite(encodedName) {
+
+  const name =
+    decodeURIComponent(encodedName);
+
+
+  favs =
+    favs.filter(
+      collegeName =>
+        collegeName !== name
+    );
+
+
+  localStorage.setItem(
+    "favs",
+    JSON.stringify(favs)
+  );
+
+
+  renderFavorites();
+
+}
+
+
+/* =====================================================
+   LOAD FAVORITES
+===================================================== */
+
+renderFavorites();
+
+</script>
+
+
+</body>
+
+</html>

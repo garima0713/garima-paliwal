@@ -1,0 +1,1714 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>Profile | CollegeFinder India</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+/* =====================================================
+   PROFILE PAGE
+===================================================== */
+
+.profile-section{
+  min-height:100vh;
+  padding:40px 5%;
+  background:linear-gradient(135deg,#eef4ff,#f8fafc);
+}
+
+.profile-card{
+  width:100%;
+  max-width:1050px;
+  margin:auto;
+
+  background:#ffffff;
+
+  border-radius:24px;
+
+  padding:32px;
+
+  box-shadow:0 18px 50px rgba(0,0,0,0.10);
+
+  border:1px solid #e5e7eb;
+}
+
+
+/* =====================================================
+   PROFILE TOP
+===================================================== */
+
+.profile-top{
+  text-align:center;
+  padding-bottom:25px;
+  border-bottom:1px solid #e5e7eb;
+}
+
+.profile-avatar-img{
+  width:120px;
+  height:120px;
+
+  border-radius:50%;
+
+  object-fit:cover;
+
+  display:block;
+
+  margin:0 auto 12px;
+
+  border:5px solid #dbeafe;
+
+  box-shadow:0 8px 25px rgba(37,99,235,0.15);
+}
+
+#profileImageInput{
+  margin-bottom:12px;
+}
+
+.profile-top h1{
+  margin:5px 0;
+
+  color:#0f172a;
+
+  font-size:30px;
+}
+
+.profile-top p{
+  margin:0;
+
+  color:#64748b;
+
+  font-size:14px;
+}
+
+
+/* =====================================================
+   PROFILE GRID
+===================================================== */
+
+.profile-grid{
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(4,1fr);
+
+  gap:15px;
+
+  margin-top:25px;
+}
+
+.profile-box{
+
+  padding:18px;
+
+  background:#f8fafc;
+
+  border:1px solid #e2e8f0;
+
+  border-radius:15px;
+
+  min-height:100px;
+}
+
+.profile-box h3{
+
+  margin:0 0 8px;
+
+  font-size:15px;
+
+  color:#334155;
+}
+
+.profile-box p{
+
+  margin:0;
+
+  color:#2563eb;
+
+  font-size:14px;
+
+  font-weight:600;
+
+  word-break:break-word;
+}
+
+
+/* =====================================================
+   SECTION CARD
+===================================================== */
+
+.section-card{
+
+  margin-top:25px;
+
+  padding:22px;
+
+  border-radius:16px;
+
+  background:#f8fafc;
+
+  border:1px solid #e2e8f0;
+}
+
+.section-card h2{
+
+  margin:0 0 15px;
+
+  color:#111827;
+
+  font-size:21px;
+}
+
+
+/* =====================================================
+   ROW
+===================================================== */
+
+.row{
+
+  width:100%;
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  gap:15px;
+
+  padding:14px 16px;
+
+  margin-top:8px;
+
+  background:white;
+
+  border-radius:10px;
+
+  border:1px solid #e5e7eb;
+}
+
+.row span{
+
+  color:#475569;
+
+  font-size:14px;
+
+  font-weight:500;
+
+  word-break:break-word;
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+.status{
+
+  color:#16a34a;
+
+  background:#dcfce7;
+
+  padding:5px 10px;
+
+  border-radius:20px;
+
+  font-size:12px;
+
+  white-space:nowrap;
+}
+
+
+/* =====================================================
+   CET EXAM SCORE - ONLY 80 COLOR
+===================================================== */
+
+.exam-score{
+
+  color:#ffffff;
+
+  background:#2563eb;
+
+}
+
+
+/* =====================================================
+   PENDING
+===================================================== */
+
+.pending{
+
+  color:#d97706;
+
+  background:#642f74;
+}
+
+
+/* =====================================================
+   APPLICATION DETAILS
+===================================================== */
+
+.application-card{
+
+  margin-top:10px;
+
+  padding:17px;
+
+  background:rgb(68, 17, 17);
+
+  border:1px solid #10254e;
+
+  border-radius:12px;
+}
+
+.application-college{
+
+  color:#2563eb;
+
+  font-size:17px;
+
+  font-weight:700;
+
+  margin-bottom:10px;
+}
+
+.application-info{
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(3,1fr);
+
+  gap:8px;
+
+  font-size:13px;
+
+  color:#64748b;
+}
+
+.application-info span{
+
+  padding:8px;
+
+  background:#d499c3;
+
+  border-radius:8px;
+}
+
+.application-date{
+
+  margin-top:10px;
+
+  color:#94a3b8;
+
+  font-size:12px;
+}
+
+
+/* =====================================================
+   ACTION BUTTONS
+===================================================== */
+
+.action-buttons{
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(4,1fr);
+
+  gap:12px;
+
+  margin-top:25px;
+}
+
+.action-buttons button{
+
+  padding:13px;
+
+  border:none;
+
+  border-radius:11px;
+
+  background:#2563eb;
+
+  color:rgb(230, 156, 223);
+
+  font-weight:600;
+
+  cursor:pointer;
+
+  transition:0.3s;
+}
+
+.action-buttons button:hover{
+
+  transform:translateY(-2px);
+
+  background:#1d4ed8;
+}
+
+.action-buttons .delete-btn{
+
+  background:#dc2626;
+}
+
+.action-buttons .delete-btn:hover{
+
+  background:#b91c1c;
+}
+
+
+/* =====================================================
+   DARK MODE
+===================================================== */
+
+body.dark .profile-section{
+
+  background:
+  linear-gradient(
+    135deg,
+    #020617,
+    #0f172a
+  );
+}
+
+body.dark .profile-card{
+
+  background:#111827;
+
+  border-color:#374151;
+
+  box-shadow:
+  0 20px 55px rgba(0,0,0,0.55);
+}
+
+body.dark .profile-top{
+
+  border-color:#374151;
+}
+
+body.dark .profile-top h1{
+
+  color:#f8fafc;
+}
+
+body.dark .profile-top p{
+
+  color:#cbd5e1;
+}
+
+body.dark .profile-box{
+
+  background:#1f2937;
+
+  border-color:#374151;
+}
+
+body.dark .profile-box h3{
+
+  color:#f1f5f9;
+}
+
+body.dark .profile-box p{
+
+  color:#60a5fa;
+}
+
+body.dark .section-card{
+
+  background:#1f2937;
+
+  border-color:#374151;
+}
+
+body.dark .section-card h2{
+
+  color:#796eb9;
+}
+
+body.dark .row,
+body.dark .application-card{
+
+  background:#111827;
+
+  border-color:#374151;
+}
+
+body.dark .row span{
+
+  color:#abc6e6;
+}
+
+body.dark .application-info span{
+
+  background:#1f2937;
+
+  color:#78a1d4;
+}
+
+body.dark .application-date{
+
+  color:#9ca3af;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media(max-width:900px){
+
+  .profile-grid{
+
+    grid-template-columns:
+    repeat(2,1fr);
+  }
+
+  .action-buttons{
+
+    grid-template-columns:
+    repeat(2,1fr);
+  }
+
+  .application-info{
+
+    grid-template-columns:
+    repeat(2,1fr);
+  }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:600px){
+
+  .profile-section{
+
+    padding:25px 3%;
+  }
+
+  .profile-card{
+
+    padding:20px 15px;
+
+    border-radius:18px;
+  }
+
+  .profile-top h1{
+
+    font-size:25px;
+  }
+
+  .profile-grid{
+
+    grid-template-columns:1fr;
+
+  }
+
+  .action-buttons{
+
+    grid-template-columns:1fr;
+  }
+
+  .application-info{
+
+    grid-template-columns:1fr;
+  }
+
+  .row{
+
+    align-items:flex-start;
+
+    flex-direction:column;
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     MENU BUTTON
+===================================================== -->
+
+<button
+  id="menuBtn"
+  class="menuBtn"
+  type="button"
+>
+  ☰
+</button>
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<div
+  class="sidebar"
+  id="sidebar"
+>
+
+  <h2>CollegeFinder</h2>
+
+  <a href="dashboard.html">
+    🏠 Dashboard
+  </a>
+
+  <a href="profile.html">
+    👤 Profile
+  </a>
+
+  <a href="colleges.html">
+    🎓 Colleges
+  </a>
+
+  <a href="favorites.html">
+    ❤️ Favorites
+  </a>
+
+  <a href="compare.html">
+    ⚖ Compare
+  </a>
+
+  <a href="apply.html">
+    📝 Apply
+  </a>
+
+  <a href="about.html">
+    ℹ About
+  </a>
+
+  <a href="contact.html">
+    📞 Contact
+  </a>
+
+  <a
+    href="login.html"
+    onclick="logout()"
+  >
+    🚪 Logout
+  </a>
+
+</div>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav>
+
+  <div class="logo">
+    CollegeFinder India
+  </div>
+
+  <div class="nav-buttons">
+
+    <button
+      type="button"
+      onclick="window.location.href='index.html'"
+    >
+      🏠 Home
+    </button>
+
+    <button
+      type="button"
+      onclick="window.location.href='colleges.html'"
+    >
+      🎓 Colleges
+    </button>
+
+    <button
+      type="button"
+      id="darkBtn"
+    >
+      🌙 Dark Mode
+    </button>
+
+    <button
+      type="button"
+      onclick="logout()"
+      class="logoutBtn"
+    >
+      🚪 Logout
+    </button>
+
+  </div>
+
+</nav>
+
+
+<!-- =====================================================
+     PROFILE
+===================================================== -->
+
+<section class="profile-section">
+
+<div class="profile-card">
+
+
+  <!-- PROFILE TOP -->
+
+  <div class="profile-top">
+
+    <img
+      id="profileImage"
+      src="https://via.placeholder.com/120"
+      class="profile-avatar-img"
+      alt="Profile"
+    >
+
+    <input
+      type="file"
+      id="profileImageInput"
+      accept="image/*"
+    >
+
+    <h1 id="userName">
+      Student
+    </h1>
+
+    <p id="userEmail">
+      -
+    </p>
+
+  </div>
+
+
+  <!-- PROFILE INFORMATION -->
+
+  <div class="profile-grid">
+
+
+    <div class="profile-box">
+
+      <h3>
+        📧 Email
+      </h3>
+
+      <p id="email">
+        -
+      </p>
+
+    </div>
+
+
+    <div class="profile-box">
+
+      <h3>
+        👤 Father Name
+      </h3>
+
+      <p id="father">
+        -
+      </p>
+
+    </div>
+
+
+    <div class="profile-box">
+
+      <h3>
+        📱 Mobile
+      </h3>
+
+      <p id="mobile">
+        -
+      </p>
+
+    </div>
+
+
+    <div class="profile-box">
+
+      <h3>
+        🏠 Address
+      </h3>
+
+      <p id="address">
+        -
+      </p>
+
+    </div>
+
+
+    <div class="profile-box">
+
+      <h3>
+        🎓 Course
+      </h3>
+
+      <p id="course">
+        -
+      </p>
+
+    </div>
+
+
+    <div class="profile-box">
+
+      <h3>
+        📚 10th %
+      </h3>
+
+      <p id="tenth">
+        -
+      </p>
+
+    </div>
+
+
+    <div class="profile-box">
+
+      <h3>
+        📚 12th %
+      </h3>
+
+      <p id="twelfth">
+        -
+      </p>
+
+    </div>
+
+
+    <div class="profile-box">
+
+      <h3>
+        🎯 Exam Score
+      </h3>
+
+      <p id="exam">
+        -
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       ENTRANCE EXAM
+  ===================================================== -->
+
+  <div class="section-card">
+
+    <h2>
+      🏆 Entrance Exam
+    </h2>
+
+    <div id="examBox">
+
+      <div class="row">
+
+        <span>
+          No exam information
+        </span>
+
+        <strong class="status pending">
+          N/A
+        </strong>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       APPLIED COLLEGES
+  ===================================================== -->
+
+  <div class="section-card">
+
+    <h2>
+      🎓 Applied Colleges
+    </h2>
+
+    <div id="collegeList">
+
+      <div class="row">
+
+        <span>
+          No College Applied Yet
+        </span>
+
+        <strong class="status pending">
+          Pending
+        </strong>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       ACTION BUTTONS
+  ===================================================== -->
+
+  <div class="action-buttons">
+
+    <button
+      type="button"
+      onclick="window.location.href='favorites.html'"
+    >
+      ❤️ Favorites
+    </button>
+
+
+    <button
+      type="button"
+      onclick="window.location.href='compare.html'"
+    >
+      ⚖ Compare
+    </button>
+
+
+    <button
+      type="button"
+      onclick="window.location.href='colleges.html'"
+    >
+      🎓 Browse Colleges
+    </button>
+
+
+    <button
+      type="button"
+      onclick="deleteAccount()"
+      class="delete-btn"
+    >
+      🗑 Delete Account
+    </button>
+
+  </div>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+/* =====================================================
+   LOAD USER
+===================================================== */
+
+window.addEventListener("load", function(){
+
+  if(
+    localStorage.getItem("isLoggedIn") !== "true"
+  ){
+
+    window.location.href =
+      "login.html";
+
+    return;
+
+  }
+
+
+  /*
+     Support both currentUser and user
+  */
+
+  let user = null;
+
+
+  try{
+
+    user =
+      JSON.parse(
+        localStorage.getItem("currentUser")
+      );
+
+  }
+  catch(error){
+
+    user = null;
+
+  }
+
+
+  if(!user){
+
+    try{
+
+      user =
+        JSON.parse(
+          localStorage.getItem("user")
+        );
+
+    }
+    catch(error){
+
+      user = null;
+
+    }
+
+  }
+
+
+  if(!user){
+
+    window.location.href =
+      "login.html";
+
+    return;
+
+  }
+
+
+  /* =================================================
+     BASIC INFORMATION
+  ================================================= */
+
+  document.getElementById("userName")
+    .textContent =
+    user.name || "Student";
+
+
+  document.getElementById("userEmail")
+    .textContent =
+    user.email || "";
+
+
+  document.getElementById("email")
+    .textContent =
+    user.email || "-";
+
+
+  document.getElementById("father")
+    .textContent =
+    user.father || "-";
+
+
+  document.getElementById("mobile")
+    .textContent =
+    user.mobile || "-";
+
+
+  document.getElementById("address")
+    .textContent =
+    user.address || "-";
+
+
+  document.getElementById("course")
+    .textContent =
+    user.course || "-";
+
+
+  document.getElementById("tenth")
+    .textContent =
+    (user.tenth || "0") + "%";
+
+
+  document.getElementById("twelfth")
+    .textContent =
+    (user.twelfth || "0") + "%";
+
+
+  document.getElementById("exam")
+    .textContent =
+    (user.exam || "N/A") +
+    " - " +
+    (user.score || "N/A");
+
+
+  /* =================================================
+     EXAM
+  ================================================= */
+
+  document.getElementById("examBox").innerHTML = `
+
+    <div class="row">
+
+      <span>
+        ${escapeHTML(user.exam || "N/A")}
+      </span>
+
+      <strong class="status exam-score">
+        ${escapeHTML(user.score || "N/A")}
+      </strong>
+
+    </div>
+
+  `;
+
+
+  /* =================================================
+     PROFILE IMAGE
+  ================================================= */
+
+  const savedImg =
+    localStorage.getItem(
+      "profileImage_" +
+      user.email
+    );
+
+
+  if(savedImg){
+
+    document.getElementById(
+      "profileImage"
+    ).src = savedImg;
+
+  }
+
+
+  /* =================================================
+     LOAD APPLICATIONS
+  ================================================= */
+
+  loadApplications(user);
+
+});
+
+
+/* =====================================================
+   LOAD APPLICATIONS
+===================================================== */
+
+function loadApplications(user){
+
+  const collegeList =
+    document.getElementById(
+      "collegeList"
+    );
+
+
+  collegeList.innerHTML = "";
+
+
+  let applications = [];
+
+
+  /*
+     New application format
+  */
+
+  try{
+
+    applications =
+      JSON.parse(
+        localStorage.getItem(
+          "applications"
+        )
+      ) || [];
+
+  }
+  catch(error){
+
+    applications = [];
+
+  }
+
+
+  /*
+     IMPORTANT:
+     Current user's applications only
+  */
+
+  const userApplications =
+    applications.filter(
+      application => {
+
+        return (
+          application.email &&
+          user.email &&
+          application.email.toLowerCase()
+          ===
+          user.email.toLowerCase()
+        );
+
+      }
+    );
+
+
+  /* =================================================
+     NEW FORMAT APPLICATIONS FOUND
+  ================================================= */
+
+  if(userApplications.length > 0){
+
+    userApplications.forEach(
+      application => {
+
+        const div =
+          document.createElement(
+            "div"
+          );
+
+
+        div.className =
+          "application-card";
+
+
+        div.innerHTML = `
+
+          <div class="application-college">
+
+            🎓
+            ${escapeHTML(
+              application.college ||
+              "College not selected"
+            )}
+
+          </div>
+
+
+          <div class="application-info">
+
+            <span>
+              👤
+              ${escapeHTML(
+                application.name || "-"
+              )}
+            </span>
+
+            <span>
+              📚
+              ${escapeHTML(
+                application.course || "-"
+              )}
+            </span>
+
+            <span>
+              📱
+              ${escapeHTML(
+                application.mobile || "-"
+              )}
+            </span>
+
+          </div>
+
+
+          <div class="application-date">
+
+            📅 Applied:
+            ${escapeHTML(
+              application.date || "-"
+            )}
+
+          </div>
+
+
+          <div style="margin-top:10px;">
+
+            <strong class="status">
+
+              ${escapeHTML(
+                application.status ||
+                "Submitted"
+              )}
+
+            </strong>
+
+          </div>
+
+        `;
+
+
+        collegeList.appendChild(
+          div
+        );
+
+      }
+    );
+
+
+    return;
+
+  }
+
+
+  /* =================================================
+     OLD FORMAT SUPPORT
+  ================================================= */
+
+  let appliedColleges = [];
+
+
+  try{
+
+    appliedColleges =
+      JSON.parse(
+        localStorage.getItem(
+          "appliedColleges"
+        )
+      ) || [];
+
+  }
+  catch(error){
+
+    appliedColleges = [];
+
+  }
+
+
+  /*
+     Old format does not store email.
+     Show it as fallback.
+  */
+
+  if(appliedColleges.length > 0){
+
+    appliedColleges.forEach(
+      college => {
+
+        const div =
+          document.createElement(
+            "div"
+          );
+
+
+        div.className =
+          "row";
+
+
+        div.innerHTML = `
+
+          <span>
+
+            🎓
+            ${escapeHTML(college)}
+
+          </span>
+
+          <strong class="status">
+
+            Applied
+
+          </strong>
+
+        `;
+
+
+        collegeList.appendChild(
+          div
+        );
+
+      }
+    );
+
+
+    return;
+
+  }
+
+
+  /* =================================================
+     NOTHING APPLIED
+  ================================================= */
+
+  collegeList.innerHTML = `
+
+    <div class="row">
+
+      <span>
+        No College Applied Yet
+      </span>
+
+      <strong class="status pending">
+        Pending
+      </strong>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(value){
+
+  const div =
+    document.createElement(
+      "div"
+    );
+
+  div.textContent =
+    value == null
+      ? ""
+      : String(value);
+
+  return div.innerHTML;
+
+}
+
+
+/* =====================================================
+   PROFILE IMAGE UPLOAD
+===================================================== */
+
+document
+.getElementById("profileImageInput")
+.addEventListener(
+  "change",
+  function(){
+
+    const file =
+      this.files[0];
+
+
+    if(!file) return;
+
+
+    let user = null;
+
+
+    try{
+
+      user =
+        JSON.parse(
+          localStorage.getItem(
+            "currentUser"
+          )
+        );
+
+    }
+    catch(error){
+
+      user = null;
+
+    }
+
+
+    if(!user || !user.email){
+
+      alert(
+        "Please login again."
+      );
+
+      return;
+
+    }
+
+
+    const reader =
+      new FileReader();
+
+
+    reader.onload =
+      function(event){
+
+        document.getElementById(
+          "profileImage"
+        ).src =
+          event.target.result;
+
+
+        localStorage.setItem(
+
+          "profileImage_" +
+          user.email,
+
+          event.target.result
+
+        );
+
+      };
+
+
+    reader.readAsDataURL(
+      file
+    );
+
+  }
+);
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+function logout(){
+
+  localStorage.removeItem(
+    "isLoggedIn"
+  );
+
+  localStorage.removeItem(
+    "currentUser"
+  );
+
+  localStorage.removeItem(
+    "user"
+  );
+
+  window.location.href =
+    "login.html";
+
+}
+
+
+/* =====================================================
+   DELETE ACCOUNT
+===================================================== */
+
+function deleteAccount(){
+
+  let current = null;
+
+
+  try{
+
+    current =
+      JSON.parse(
+        localStorage.getItem(
+          "currentUser"
+        )
+      );
+
+  }
+  catch(error){
+
+    current = null;
+
+  }
+
+
+  if(!current){
+
+    alert(
+      "No user logged in"
+    );
+
+    return;
+
+  }
+
+
+  const confirmDelete =
+    confirm(
+      "Are you sure you want to delete your account?"
+    );
+
+
+  if(!confirmDelete){
+
+    return;
+
+  }
+
+
+  let users = [];
+
+
+  try{
+
+    users =
+      JSON.parse(
+        localStorage.getItem(
+          "users"
+        )
+      ) || [];
+
+  }
+  catch(error){
+
+    users = [];
+
+  }
+
+
+  users =
+    users.filter(
+      user =>
+      user.email !== current.email
+    );
+
+
+  localStorage.setItem(
+    "users",
+    JSON.stringify(users)
+  );
+
+
+  localStorage.removeItem(
+    "profileImage_" +
+    current.email
+  );
+
+
+  localStorage.removeItem(
+    "currentUser"
+  );
+
+
+  localStorage.removeItem(
+    "user"
+  );
+
+
+  localStorage.removeItem(
+    "isLoggedIn"
+  );
+
+
+  alert(
+    "Account deleted successfully"
+  );
+
+
+  window.location.href =
+    "register.html";
+
+}
+
+
+/* =====================================================
+   DARK MODE
+===================================================== */
+
+const darkBtn =
+  document.getElementById(
+    "darkBtn"
+  );
+
+
+function applyDarkMode(){
+
+  if(
+    localStorage.getItem(
+      "darkMode"
+    ) === "on"
+  ){
+
+    document.body.classList.add(
+      "dark"
+    );
+
+    if(darkBtn){
+
+      darkBtn.textContent =
+        "☀️ Light Mode";
+
+    }
+
+  }
+
+  else{
+
+    document.body.classList.remove(
+      "dark"
+    );
+
+    if(darkBtn){
+
+      darkBtn.textContent =
+        "🌙 Dark Mode";
+
+    }
+
+  }
+
+}
+
+
+applyDarkMode();
+
+
+if(darkBtn){
+
+  darkBtn.addEventListener(
+    "click",
+    function(){
+
+      const isDark =
+        document.body.classList.toggle(
+          "dark"
+        );
+
+
+      localStorage.setItem(
+
+        "darkMode",
+
+        isDark
+          ? "on"
+          : "off"
+
+      );
+
+
+      darkBtn.textContent =
+        isDark
+          ? "☀️ Light Mode"
+          : "🌙 Dark Mode";
+
+    }
+  );
+
+}
+
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+const menuBtn =
+  document.getElementById(
+    "menuBtn"
+  );
+
+
+const sidebar =
+  document.getElementById(
+    "sidebar"
+  );
+
+
+if(
+  menuBtn &&
+  sidebar
+){
+
+  menuBtn.addEventListener(
+    "click",
+    function(){
+
+      sidebar.classList.toggle(
+        "active"
+      );
+
+    }
+  );
+
+}
+
+</script>
+
+</body>
+
+</html>

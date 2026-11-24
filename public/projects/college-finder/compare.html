@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    Compare Colleges | CollegeFinder India
+  </title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
+</head>
+
+<body>
+  <!-- MENU BUTTON -->
+<button id="menuBtn" class="menuBtn">☰</button>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+  <h2>CollegeFinder</h2>
+
+  <a href="dashboard.html">🏠 Dashboard</a>
+  <a href="profile.html">👤 Profile</a>
+  <a href="colleges.html">🎓 Colleges</a>
+  <a href="favorites.html">❤️ Favorites</a>
+  <a href="compare.html">⚖ Compare</a>
+  <a href="apply.html">📝 Apply</a>
+  <a href="about.html">ℹ About</a>
+  <a href="contact.html">📞 Contact</a>
+  <a href="login.html">🚪 Logout</a>
+</div>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav>
+
+  <div class="logo">
+    CollegeFinder India
+  </div>
+
+  <ul>
+
+    <li>
+      <a href="index.html">
+        Home
+      </a>
+    </li>
+
+    <li>
+      <a href="colleges.html">
+        Colleges
+      </a>
+    </li>
+
+    <li>
+      <a href="about.html">
+        About
+      </a>
+    </li>
+
+    <li>
+      <a href="contact.html">
+        Contact
+      </a>
+    </li>
+
+    <li>
+      <a href="favorites.html">
+        Favorites ❤️
+      </a>
+    </li>
+    <li>
+      <a href="compare.html">
+        Compare
+      </a>
+    </li>
+
+    
+    <li id="loginBtn"><a href="login.html">Login</a>/<a href="register.html">Register</a></li>
+
+
+  </ul>
+
+  <button id="darkBtn">
+    🌙 Dark Mode
+  </button>
+
+</nav>
+
+<!-- ================= HERO ================= -->
+
+<section class="compareHero">
+
+  <div class="compareOverlay"></div>
+
+  <div class="compareContent">
+
+    <h1>
+      Compare Colleges
+    </h1>
+
+    <p>
+      Compare Fees, Placements, Exams &
+      Find The Best College
+    </p>
+
+  </div>
+
+</section>
+
+<!-- ================= COMPARE SECTION ================= -->
+
+<section class="compareSection">
+
+  <div class="compareCard">
+
+    <h2>
+      Compare Top Colleges
+    </h2>
+
+    <p>
+      Select any two colleges and get
+      an instant comparison.
+    </p>
+
+    <select
+      id="college1"
+      class="formInput"
+    >
+
+      
+
+    </select>
+
+    <select
+      id="college2"
+      class="formInput"
+    >
+
+      
+
+    </select>
+
+    <button
+      class="applyBtn"
+      onclick="compareColleges()"
+    >
+      Compare Now
+    </button>
+
+  </div>
+
+</section>
+
+<!-- ================= RESULT ================= -->
+
+<section>
+
+  <div id="result"></div>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+  <h3>
+    CollegeFinder India
+  </h3>
+
+  <p>
+    Helping Students Build Better Futures
+  </p>
+
+</footer>
+<script src="colleges.js"></script>
+<!-- ================= script  ================= -->
+<script>
+  // LOGIN CHECK
+
+if(localStorage.getItem("isLoggedIn")!=="true"){
+   window.location.href="login.html";
+}
+
+// DARK MODE
+
+const darkBtn = document.getElementById("darkBtn");
+
+if(localStorage.getItem("darkMode") === "on"){
+  document.body.classList.add("dark");
+}
+
+darkBtn.addEventListener("click", () => {
+
+  document.body.classList.toggle("dark");
+
+  if(document.body.classList.contains("dark")){
+    localStorage.setItem("darkMode","on");
+  }else{
+    localStorage.setItem("darkMode","off");
+  }
+
+});
+
+
+// DATA OBJECT
+
+const data = {};
+
+if(window.colleges){
+
+  window.colleges.forEach(college => {
+
+    data[college.name] = {
+
+      fees:
+      parseInt(
+        String(college.fees).replace(/[^\d]/g,"")
+      ) || 0,
+
+      exam: college.exam || "N/A",
+
+      placement:
+      parseInt(college.placement) || 0,
+
+      image:
+      college.image ||
+      "https://via.placeholder.com/400x250",
+
+      place:
+      college.place || "N/A",
+
+      type:
+      college.type || "N/A"
+
+    };
+
+  });
+
+}
+
+
+// LOAD COLLEGE OPTIONS
+
+function loadCollegeOptions(){
+
+  const college1 =
+  document.getElementById("college1");
+
+  const college2 =
+  document.getElementById("college2");
+
+  college1.innerHTML =
+  `<option value="">Select College</option>`;
+
+  college2.innerHTML =
+  `<option value="">Select College</option>`;
+
+  if(window.colleges){
+
+    window.colleges.forEach(college => {
+
+      college1.innerHTML +=
+      `<option value="${college.name}">
+      ${college.name}
+      </option>`;
+
+      college2.innerHTML +=
+      `<option value="${college.name}">
+      ${college.name}
+      </option>`;
+
+    });
+
+  }
+
+}
+
+loadCollegeOptions();
+const loginBtn =
+document.getElementById("loginBtn");
+
+if(localStorage.getItem("isLoggedIn")==="true"){
+
+  const user =
+  JSON.parse(localStorage.getItem("user"));
+
+  loginBtn.innerHTML =
+  `<a href="dashboard.html">
+     👤 ${user.name}
+   </a>`;
+
+}
+
+
+// SCORE CALCULATION
+
+function getScore(college){
+
+  let score = 0;
+
+  score +=
+  data[college].placement * 2;
+
+  score +=
+  (300000 - data[college].fees) / 10000;
+
+  return score;
+
+}
+
+
+// COMPARE FUNCTION
+
+function compareColleges(){
+
+  const c1 =
+  document.getElementById("college1").value;
+
+  const c2 =
+  document.getElementById("college2").value;
+
+  if(c1 === "" || c2 === ""){
+
+    alert("Please Select Both Colleges");
+    return;
+
+  }
+
+  if(c1 === c2){
+
+    alert("Please Select Different Colleges");
+    return;
+
+  }
+
+  const best =
+  getScore(c1) > getScore(c2)
+  ? c1
+  : c2;
+  localStorage.setItem(
+  "lastCompare",
+  JSON.stringify({
+    college1:c1,
+    college2:c2,
+    winner:best
+  })
+);
+
+  document.getElementById("result").innerHTML = `
+
+  <div class="compareResult">
+
+    <h2>College Comparison</h2>
+
+    <div class="compareGrid">
+
+      <div class="compareCollege">
+
+        <img
+          src="${data[c1].image}"
+          alt="${c1}"
+        >
+
+        <h3>${c1}</h3>
+
+        <p>📍 ${data[c1].place}</p>
+
+        <p>🏫 ${data[c1].type}</p>
+
+      </div>
+
+      <div class="vsBox">
+        VS
+      </div>
+
+      <div class="compareCollege">
+
+        <img
+          src="${data[c2].image}"
+          alt="${c2}"
+        >
+
+        <h3>${c2}</h3>
+
+        <p>📍 ${data[c2].place}</p>
+
+        <p>🏫 ${data[c2].type}</p>
+
+      </div>
+
+    </div>
+
+    <table class="compareTable">
+
+      <tr>
+        <th>Feature</th>
+        <th>${c1}</th>
+        <th>${c2}</th>
+      </tr>
+
+      <tr>
+        <td>Fees</td>
+        <td>₹${data[c1].fees}</td>
+        <td>₹${data[c2].fees}</td>
+      </tr>
+
+      <tr>
+        <td>Exam</td>
+        <td>${data[c1].exam}</td>
+        <td>${data[c2].exam}</td>
+      </tr>
+
+      <tr>
+        <td>Placement</td>
+        <td>${data[c1].placement}%</td>
+        <td>${data[c2].placement}%</td>
+      </tr>
+
+    </table>
+
+    <div class="winnerBox">
+
+      🏆 Recommended Best College
+
+      <strong>${best}</strong>
+
+    </div>
+
+  </div>
+
+  `;
+
+}
+
+const menuBtn = document.getElementById("menuBtn");
+const sidebar = document.getElementById("sidebar");
+
+menuBtn.addEventListener("click", () => {
+  sidebar.classList.toggle("active");
+});
+
+</script>
+
+</body>
+</html>

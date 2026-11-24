@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Laptop Store</title>
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="responsive.css">
+
+</head>
+
+<body>
+
+<!-- ==========================
+HEADER
+========================== -->
+
+<header>
+
+<div class="logo">
+
+<h2>💻 Laptop Store</h2>
+
+</div>
+
+<div class="search-box">
+
+    <input
+        type="text"
+        id="search-input"
+        placeholder="Search Laptop..."
+        autocomplete="off">
+
+    <div id="search-suggestions"></div>
+
+</div>
+
+<nav>
+
+<a href="index.html">🏠 Home</a>
+
+<a href="wishlist.html">
+
+❤️ Wishlist
+
+<span id="wishlist-count">0</span>
+
+</a>
+
+<a href="login.html">👤 Login</a>
+
+<a href="contact.html">📞 Contact</a>
+
+<a href="cart.html">
+
+🛒 Cart
+
+<span id="cart-count">0</span>
+
+</a>
+
+</nav>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+<img
+src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=1400"
+alt="Laptop Banner">
+
+</section>
+
+
+<!-- BRANDS -->
+
+<section class="brands">
+
+<h2>Shop by Brand</h2>
+
+<div class="brand-grid">
+
+<a href="hp.html" class="brand-card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/a/ad/HP_logo_2012.svg" alt="HP">
+<h3>HP</h3>
+</a>
+
+<a href="dell.html" class="brand-card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/48/Dell_Logo.svg" alt="Dell">
+<h3>Dell</h3>
+</a>
+
+<a href="lenovo.html" class="brand-card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/Lenovo_logo_2015.svg" alt="Lenovo">
+<h3>Lenovo</h3>
+</a>
+
+<a href="asus.html" class="brand-card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/ASUS_Logo.svg" alt="ASUS">
+<h3>ASUS</h3>
+</a>
+
+<a href="acer.html" class="brand-card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/a/a1/Acer_2011.svg" alt="Acer">
+<h3>Acer</h3>
+</a>
+
+</div>
+
+</section>
+
+
+<!-- PRODUCTS -->
+
+<section class="products">
+
+<h2>Featured Laptops</h2>
+
+<div id="featured-products">
+
+<!-- Products Loaded by JS -->
+
+</div>
+
+</section>
+<!-- ==========================
+FOOTER
+========================== -->
+
+<footer>
+
+<p>
+
+© 2026 Laptop Store | All Rights Reserved.
+
+</p>
+
+</footer>
+
+
+<!-- ==========================
+JAVASCRIPT
+========================== -->
+
+<script src="products.js"></script>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
